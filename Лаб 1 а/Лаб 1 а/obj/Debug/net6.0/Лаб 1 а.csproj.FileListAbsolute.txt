@@ -1,0 +1,15 @@
+F:\2 курс\Лабки з ІПЗ\Лаб 1 а\Лаб 1 а\bin\Debug\net6.0\Лаб 1 а.exe
+F:\2 курс\Лабки з ІПЗ\Лаб 1 а\Лаб 1 а\bin\Debug\net6.0\Лаб 1 а.deps.json
+F:\2 курс\Лабки з ІПЗ\Лаб 1 а\Лаб 1 а\bin\Debug\net6.0\Лаб 1 а.runtimeconfig.json
+F:\2 курс\Лабки з ІПЗ\Лаб 1 а\Лаб 1 а\bin\Debug\net6.0\Лаб 1 а.dll
+F:\2 курс\Лабки з ІПЗ\Лаб 1 а\Лаб 1 а\bin\Debug\net6.0\Лаб 1 а.pdb
+F:\2 курс\Лабки з ІПЗ\Лаб 1 а\Лаб 1 а\obj\Debug\net6.0\Лаб 1 а.csproj.AssemblyReference.cache
+F:\2 курс\Лабки з ІПЗ\Лаб 1 а\Лаб 1 а\obj\Debug\net6.0\Лаб 1 а.GeneratedMSBuildEditorConfig.editorconfig
+F:\2 курс\Лабки з ІПЗ\Лаб 1 а\Лаб 1 а\obj\Debug\net6.0\Лаб 1 а.AssemblyInfoInputs.cache
+F:\2 курс\Лабки з ІПЗ\Лаб 1 а\Лаб 1 а\obj\Debug\net6.0\Лаб 1 а.AssemblyInfo.cs
+F:\2 курс\Лабки з ІПЗ\Лаб 1 а\Лаб 1 а\obj\Debug\net6.0\Лаб 1 а.csproj.CoreCompileInputs.cache
+F:\2 курс\Лабки з ІПЗ\Лаб 1 а\Лаб 1 а\obj\Debug\net6.0\Лаб 1 а.dll
+F:\2 курс\Лабки з ІПЗ\Лаб 1 а\Лаб 1 а\obj\Debug\net6.0\refint\Лаб 1 а.dll
+F:\2 курс\Лабки з ІПЗ\Лаб 1 а\Лаб 1 а\obj\Debug\net6.0\Лаб 1 а.pdb
+F:\2 курс\Лабки з ІПЗ\Лаб 1 а\Лаб 1 а\obj\Debug\net6.0\Лаб 1 а.genruntimeconfig.cache
+F:\2 курс\Лабки з ІПЗ\Лаб 1 а\Лаб 1 а\obj\Debug\net6.0\ref\Лаб 1 а.dll

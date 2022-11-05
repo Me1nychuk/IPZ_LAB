@@ -4,28 +4,15 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections;
 
 namespace Lab_3_4_5
 {
     internal class Program
     {
-
-        public static void UseParams(params int[] list)
+        abstract class Person
         {
-            for (int i = 0; i < list.Length; i++)
-            {
-                Console.Write(list[i] + " ");
-            }
-
-        }
-
-
-
-    
-
-        class Person
-        {
-            public  const int C = 12;
+            
 
             static int count = 0;
 
@@ -34,20 +21,20 @@ namespace Lab_3_4_5
                 Random rnd = new Random();
 
 
-                var names = (Names)rnd.Next(0, 7);
+                var names = (Names)rnd.Next(0, 10);
 
-                name = names.ToString();
+                _name = names.ToString();
 
-                age = rnd.Next(18, 45);
+                _age = rnd.Next(18, 45);
 
                 count++;
 
                 Console.WriteLine("//////////////////////////");
-                Console.WriteLine($"Був створений новий екзепляр класу персон(або нащадок цього класу)  Його номер :{count} | Ім'я : {name} | Вік : {age} ");
+                Console.WriteLine($"Був створений новий екзепляр класу персон(або нащадок цього класу)  Його номер :{count} | Ім'я : {_name} | Вік : {_age} ");
                 Console.WriteLine("//////////////////////////");
             }
-            private string name;
-            private int age;
+            private string _name;
+            private int _age;
 
 
             enum Names
@@ -59,63 +46,107 @@ namespace Lab_3_4_5
                 Edvard,
                 Zak,
                 Harry,
-                Leo
+                Leo,
+                Gary,
+                Sony,
+                Rick
             
             }
             public int Age
-            { get { return age; } set { age = value; } }
+            { get { return _age; } set { _age = value; } }
             public string Name
-            { get { return name; } set { name = value; } }
+            { get { return _name; } set { _name = value; } }
 
             public void Deconstruct(out string personName, out int personAge)
             {
-                personName = name;
-                personAge = age;
+                personName = _name;
+                personAge = _age;
             }
         }
-        class Employee : Person
+        abstract class Employee : Person
         {
-           public string task;
+            public string task;
+            public bool knowlge;
             public Employee() { }
-            public Employee(ref string task)
+
+
+            public virtual bool Work(string task)
             {
-                this.task = task;
-
-                
-                if (this.task!=null)
-                {
-                    Work( );
-                }
-            }
-
-            public virtual void Work() 
-            {       
-
+                return true;
             }
         }
+
+       
         class Boss : Person
         {
-            public void Work(ref string task)
+            Junior junior;
+            Middle middle;
+            Senior senior;
+
+            Stack myStack = new Stack();
+
+
+            bool result;
+            public Boss(ref Junior junior ,ref Middle middle, ref Senior senior )
             {
-                Console.WriteLine("Босс отримав завдання і вибирає хто буде його виконувати");
-                Console.WriteLine("Selest developer : ");
-                Developers(Int32.Parse(Console.ReadLine()), ref task);
+
+
+                this.junior = junior;
+                this.middle = middle;
+                this.senior = senior;
 
 
             }
 
-            void Developers(int number, ref string task) 
+            public void Look()
+            {
+                IEnumerable myCollection = myStack;
+
+                foreach (Object obj in myCollection)
+                    Console.Write("    {0}", obj);
+                Console.WriteLine();
+
+
+            }
+            
+           
+            public   void TaskCheck(string task)
+            {
+
+                myStack.Push(task);
+
+
+                if (task.Length < 5)
+                {
+                    Developers(1, ref task);
+                }
+                else if (task.Length > 10)
+                {
+                    Developers(3, ref task);
+                }
+                else
+                {
+                    Developers(2, ref task);
+                }
+
+
+
+
+            }
+
+
+            void Developers(int number,ref string task) 
             {
                 switch (number)
                 {
                     case 1:
-                        Junior junior = new Junior(ref task);
+                       result = junior.Work(task);
                         break;
                     case 2:
-                        Middle middle = new Middle(ref task);
+                        result = middle.Work(task);
                         break;
                     case 3:
-                        Senior senior = new Senior(ref task);
+                        result = senior.Work(task);
                         break;
                     default:
                         break;
@@ -126,109 +157,118 @@ namespace Lab_3_4_5
 
         class Pc
         {
-            bool knowledge;
-            public Pc()
+            public Internet internet;
+            public Pc(ref Internet internet)
             { 
-                knowledge = true;
-                Work();
+                this.internet = internet;
             }
-            public Pc(int d) 
-            {
-                knowledge = false;
-                Work();
-            }
+           
 
             public void Work()
             {
-                Console.WriteLine("ПК був запущений");
-                if (knowledge == false)
-                {
-                    Internet internet = new Internet();
-                    internet.GiveInfo();
-                }
-
+                Console.WriteLine("Був увімкнутий ПК");
                 Cod cod = new Cod();
                 cod.Compilation();
             }
 
-            int b = Person.C;
+           
 
         }
 
+
+        #region Developers
         class Junior : Employee
         {
-            public Junior(ref string task)
+            Pc pc;
+            public Junior(Pc pc)
             {
-                this.task = task;
-                Console.WriteLine("Junior отримав завдання");
 
-                if (this.task != " ")
-                {
-                    Console.WriteLine("Junior почав виконувати завдання");
-                    Work();
-                }
+                this.pc = pc;
+
+
             }
-            public override void Work()
+            public override bool Work(string task)
             {
-                Pc pc = new Pc(1);
+                Console.WriteLine(" Junior отримав своє завдання і почав працювати");
+                Random rnd = new Random();
+
+                if (rnd.Next(0, 100) % 2 == 0)
+                {
+                    while (!knowlge)
+                    {
+                        knowlge = pc.internet.GiveInfo();
+                    }
+
+                }
+                pc.Work();
+
+                return true;
             }
         }
 
         class Middle : Employee
         {
-            public Middle(ref string task)
+            Pc pc;
+            public Middle(Pc pc)
             {
-                this.task = task;
-                Console.WriteLine("Middle отримав завдання");
+                this.pc = pc;
 
 
-                if (this.task != " ")
-                {
-                    Console.WriteLine("Middle почав виконувати завдання");
-                    Work();
-                }
             }
-            public override void Work()
+            public override bool Work(string task)
             {
-                Pc pc = new Pc();
+                Console.WriteLine(" Middle отримав своє завдання і почав працювати");
+
+                pc.Work();
+
+                return true;
             }
 
         }
 
         class Senior : Employee
         {
-            public Senior(ref string task)
+            Air_conditioning air_Conditioning;
+            Pc pc;
+            public Senior(Pc pc, Air_conditioning air_Conditioning)
             {
-                this.task = task;
-                Console.WriteLine("Senior отримав завдання");
+                this.pc = pc;
+                this.air_Conditioning = air_Conditioning;
 
-                if (this.task != " ")
-                {
-                    Console.WriteLine("Senior почав виконувати завдання");
-                    Work();
-                }
             }
-            public override void Work()
-            {   Air_conditioning air_Conditioning = new Air_conditioning();
+            public override bool Work(string task)
+            {
+                Console.WriteLine(" Senior отримав своє завдання і почав працювати");
 
-                Pc pc = new Pc();
+                air_Conditioning.Work();
+                pc.Work();
+                return true;
 
             }
         }
 
+        #endregion
+
         class Customer : Person
         {
 
-            public void Task()
+
+           public Customer()
             {
-                Console.WriteLine("Створений клієнт");
-                Console.WriteLine("Task : ");
+
+            }
+            public void Task(ref Boss boss)
+            {
+
+                Console.WriteLine("Вкажіть ваше завдання: ");
                 string task = Console.ReadLine();
 
                 Console.WriteLine("Клієнт має завдання і передає його далі");
-                Boss boss = new Boss();
 
-                boss.Work(ref task);
+                boss.TaskCheck(task);
+
+
+
             }
 
         }
@@ -238,6 +278,7 @@ namespace Lab_3_4_5
             public void Compilation()
             {
                 Console.WriteLine("Start progress");
+
                 Console.WriteLine("Task done");
             }
 
@@ -245,9 +286,16 @@ namespace Lab_3_4_5
 
         class Internet
         { 
-            public void GiveInfo()
+            public bool GiveInfo()
             {
-                Console.WriteLine("Інтернет дав інформацію");
+                Random rnd = new Random();
+
+                if (rnd.Next(0, 100) % 20 == 0)
+                {
+                    return false ;
+                }
+
+                    return true;
             }
         }
 
@@ -257,15 +305,20 @@ namespace Lab_3_4_5
 
             public Air_conditioning()
             {
+
+            }
+
+            public void Work()
+            {
                 Console.WriteLine("Був увімкнутий кондиціонер");
 
                 Random rn = new Random();
                 temp = rn.Next(-5, 25);
 
-                Console.WriteLine("Кондиціонер визначив ткмпературу в кімнаті");
+                Console.WriteLine("Кондиціонер визначив температуру в кімнаті");
                 if (temp < 15)
-                {Cold();}
-                else if(temp > 20) { Hot(); }
+                { Cold(); }
+                else if (temp > 20) { Hot(); }
             }
 
 
@@ -287,21 +340,32 @@ namespace Lab_3_4_5
 
         static void Main(string[] args)
         {
+            Internet internet = new Internet();
+            Pc pc = new Pc(ref internet);
+            Pc pc1 = new Pc(ref internet);
+            Pc pc2 = new Pc(ref internet);
+            Air_conditioning air_Conditioning = new Air_conditioning();
 
-            
-            Customer customer = new Customer();
+            Customer customer1 = new Customer();
+            Customer customer2 = new Customer();
+            Customer customer3 = new Customer();
 
-            customer.Task();
+
+            Junior junior = new Junior(pc);
+            Middle middle = new Middle(pc1);
+            Senior senior = new Senior(pc2, air_Conditioning);
 
 
-            UseParams(1, 2, 3, 4);
+            Boss boss = new Boss(ref junior, ref middle, ref senior);
 
-            (string name, int age) = customer;
+            customer1.Task(ref boss);
+            customer2.Task(ref boss);
+            customer3.Task(ref boss);
 
-            Console.WriteLine(name);    
-            Console.WriteLine(age);
-           
+            boss.Look();
 
+
+            Stack myStack = new Stack();
         }
     }
 }

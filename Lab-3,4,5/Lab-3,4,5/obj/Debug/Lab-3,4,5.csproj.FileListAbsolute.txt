@@ -6,3 +6,11 @@ F:\2 курс\Лабки з ІПЗ\Lab-3,4,5\Lab-3,4,5\obj\Debug\Lab-3,4,5.cspro
 F:\2 курс\Лабки з ІПЗ\Lab-3,4,5\Lab-3,4,5\obj\Debug\Lab-3,4,5.csproj.CoreCompileInputs.cache
 F:\2 курс\Лабки з ІПЗ\Lab-3,4,5\Lab-3,4,5\obj\Debug\Lab-3,4,5.exe
 F:\2 курс\Лабки з ІПЗ\Lab-3,4,5\Lab-3,4,5\obj\Debug\Lab-3,4,5.pdb
+F:\2 курс\IPZ_LAB\Lab-3,4,5\Lab-3,4,5\obj\Debug\Lab-3,4,5.csproj.AssemblyReference.cache
+F:\2 курс\IPZ_LAB\Lab-3,4,5\Lab-3,4,5\obj\Debug\Lab-3,4,5.csproj.SuggestedBindingRedirects.cache
+F:\2 курс\IPZ_LAB\Lab-3,4,5\Lab-3,4,5\obj\Debug\Lab-3,4,5.csproj.CoreCompileInputs.cache
+F:\2 курс\IPZ_LAB\Lab-3,4,5\Lab-3,4,5\obj\Debug\Lab-3,4,5.exe
+F:\2 курс\IPZ_LAB\Lab-3,4,5\Lab-3,4,5\obj\Debug\Lab-3,4,5.pdb
+F:\2 курс\IPZ_LAB\Lab-3,4,5\Lab-3,4,5\bin\Debug\Lab-3,4,5.exe.config
+F:\2 курс\IPZ_LAB\Lab-3,4,5\Lab-3,4,5\bin\Debug\Lab-3,4,5.exe
+F:\2 курс\IPZ_LAB\Lab-3,4,5\Lab-3,4,5\bin\Debug\Lab-3,4,5.pdb

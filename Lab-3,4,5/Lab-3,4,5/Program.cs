@@ -29,7 +29,7 @@ namespace Lab_3_4_5
 
                 count++;
 
-                Console.WriteLine("//////////////////////////");
+                
                 Console.WriteLine($"Був створений новий екзепляр класу персон(або нащадок цього класу)  Його номер :{count} | Ім'я : {_name} | Вік : {_age} ");
                 Console.WriteLine("//////////////////////////");
             }
@@ -100,6 +100,7 @@ namespace Lab_3_4_5
 
             public void Look()
             {
+                Console.WriteLine("Босс показує усі виконані завдання");
                 IEnumerable myCollection = myStack;
 
                 foreach (Object obj in myCollection)
@@ -112,10 +113,11 @@ namespace Lab_3_4_5
            
             public   void TaskCheck(string task)
             {
-
+                Console.WriteLine("Босс отримав завдання від клієнта та почав вирішувати кому його дати");
                 myStack.Push(task);
+                Console.WriteLine("Також босс записав це завдання у свій блокнотик");
 
-
+                Console.Write("Отримав :\t");
                 if (task.Length < 5)
                 {
                     Developers(1, ref task);
@@ -163,10 +165,11 @@ namespace Lab_3_4_5
                 this.internet = internet;
             }
            
-
+            public void OnPC()
+            { Console.WriteLine("Був увімкнутий ПК"); }
             public void Work()
             {
-                Console.WriteLine("Був увімкнутий ПК");
+                Console.WriteLine("Девелопер почав писати код");
                 Cod cod = new Cod();
                 cod.Compilation();
             }
@@ -190,9 +193,10 @@ namespace Lab_3_4_5
             public override bool Work(string task)
             {
                 Console.WriteLine(" Junior отримав своє завдання і почав працювати");
+                pc.OnPC();
                 Random rnd = new Random();
 
-                if (rnd.Next(0, 100) % 2 == 0)
+                if (rnd.Next(0, 100) % 2 == 0 || rnd.Next(0,100)%5==0)
                 {
                     while (!knowlge)
                     {
@@ -218,7 +222,7 @@ namespace Lab_3_4_5
             public override bool Work(string task)
             {
                 Console.WriteLine(" Middle отримав своє завдання і почав працювати");
-
+                pc.OnPC();
                 pc.Work();
 
                 return true;
@@ -241,6 +245,7 @@ namespace Lab_3_4_5
                 Console.WriteLine(" Senior отримав своє завдання і почав працювати");
 
                 air_Conditioning.Work();
+                pc.OnPC();
                 pc.Work();
                 return true;
 
@@ -288,6 +293,7 @@ namespace Lab_3_4_5
         { 
             public bool GiveInfo()
             {
+                Console.WriteLine("Пошук інформації");
                 Random rnd = new Random();
 
                 if (rnd.Next(0, 100) % 20 == 0)

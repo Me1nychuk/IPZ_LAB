@@ -70,9 +70,9 @@ namespace Lab_3_4_5
             public Employee() { }
 
 
-            public virtual bool Work(string task)
+            public virtual string Work(string task)
             {
-                return true;
+                return null;
             }
         }
 
@@ -86,7 +86,7 @@ namespace Lab_3_4_5
             Stack myStack = new Stack();
 
 
-            bool result;
+           
             public Boss(ref Junior junior ,ref Middle middle, ref Senior senior )
             {
 
@@ -111,7 +111,7 @@ namespace Lab_3_4_5
             }
             
            
-            public   void TaskCheck(string task)
+            public   string TaskCheck(string task)
             {
                 Console.WriteLine("Босс отримав завдання від клієнта та почав вирішувати кому його дати");
                 myStack.Push(task);
@@ -120,15 +120,15 @@ namespace Lab_3_4_5
                 Console.Write("Отримав :\t");
                 if (task.Length < 5)
                 {
-                    Developers(1, ref task);
+                  return  (Developers(1, ref task));
                 }
                 else if (task.Length > 10)
                 {
-                    Developers(3, ref task);
+                    return (Developers(3, ref task));
                 }
                 else
                 {
-                    Developers(2, ref task);
+                    return (Developers(2, ref task));
                 }
 
 
@@ -137,22 +137,27 @@ namespace Lab_3_4_5
             }
 
 
-            void Developers(int number,ref string task) 
+            string Developers(int number,ref string task) 
             {
+                string res;
                 switch (number)
                 {
                     case 1:
-                       result = junior.Work(task);
+                        res = (junior.Work(task));
                         break;
                     case 2:
-                        result = middle.Work(task);
+                        res =  (middle.Work(task));
                         break;
                     case 3:
-                        result = senior.Work(task);
+                        res =  (senior.Work(task));
                         break;
                     default:
+                        res = "";
                         break;
                 }
+
+                return res;
+                
             }
         }
 
@@ -167,11 +172,12 @@ namespace Lab_3_4_5
            
             public void OnPC()
             { Console.WriteLine("Був увімкнутий ПК"); }
-            public void Work()
+            public string Work()
             {
                 Console.WriteLine("Девелопер почав писати код");
                 Cod cod = new Cod();
-                cod.Compilation();
+
+                return (cod.Compilation() + " ");
             }
 
            
@@ -190,7 +196,7 @@ namespace Lab_3_4_5
 
 
             }
-            public override bool Work(string task)
+            public override string Work(string task)
             {
                 Console.WriteLine(" Junior отримав своє завдання і почав працювати");
                 pc.OnPC();
@@ -204,9 +210,9 @@ namespace Lab_3_4_5
                     }
 
                 }
-                pc.Work();
+                
 
-                return true;
+                return (pc.Work()); 
             }
         }
 
@@ -219,13 +225,13 @@ namespace Lab_3_4_5
 
 
             }
-            public override bool Work(string task)
+            public override string Work(string task)
             {
                 Console.WriteLine(" Middle отримав своє завдання і почав працювати");
                 pc.OnPC();
-                pc.Work();
+                
 
-                return true;
+                return (pc.Work());
             }
 
         }
@@ -240,14 +246,14 @@ namespace Lab_3_4_5
                 this.air_Conditioning = air_Conditioning;
 
             }
-            public override bool Work(string task)
+            public override string Work(string task)
             {
                 Console.WriteLine(" Senior отримав своє завдання і почав працювати");
 
                 air_Conditioning.Work();
                 pc.OnPC();
-                pc.Work();
-                return true;
+               
+                return (pc.Work());
 
             }
         }
@@ -256,7 +262,7 @@ namespace Lab_3_4_5
 
         class Customer : Person
         {
-
+            string result;
 
            public Customer()
             {
@@ -270,21 +276,24 @@ namespace Lab_3_4_5
 
                 Console.WriteLine("Клієнт має завдання і передає його далі");
 
-                boss.TaskCheck(task);
+               result = boss.TaskCheck(task);
 
 
-
+                Console.WriteLine($"////////// RESULT: {result} ////////////////");
             }
 
         }
 
         class Cod
         {
-            public void Compilation()
+            public int Compilation()
             {
                 Console.WriteLine("Start progress");
+                Random rnd = new Random();
 
-                Console.WriteLine("Task done");
+                int bbb = rnd.Next(0, 100);
+                    Console.WriteLine("Task done");
+                return bbb;
             }
 
         }

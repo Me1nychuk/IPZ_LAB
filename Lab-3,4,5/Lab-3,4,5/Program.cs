@@ -12,10 +12,17 @@ namespace Lab_3_4_5
     {
         abstract class Person
         {
-            
+            #region Feilds
 
-            static int count = 0;
+            static int _count = 0;
+            private string _name;
+            private int _age;
+            #endregion
 
+
+
+
+            #region Constructors
             public Person()
             {
                 Random rnd = new Random();
@@ -27,16 +34,15 @@ namespace Lab_3_4_5
 
                 _age = rnd.Next(18, 45);
 
-                count++;
+                _count++;
 
                 
-                Console.WriteLine($"Був створений новий екзепляр класу персон(або нащадок цього класу)  Його номер :{count} | Ім'я : {_name} | Вік : {_age} ");
+                Console.WriteLine($"\t\tУ нас з'явилась нова людина. \n \t\tЇї номер :{_count} | Ім'я : {_name} | Вік : {_age} ");
                 Console.WriteLine("//////////////////////////");
             }
-            private string _name;
-            private int _age;
 
-
+            #endregion
+            #region Enums
             enum Names
             {
                 Tom,
@@ -50,44 +56,51 @@ namespace Lab_3_4_5
                 Gary,
                 Sony,
                 Rick
-            
+
             }
+            #endregion
+            #region Properties
             public int Age
             { get { return _age; } set { _age = value; } }
             public string Name
             { get { return _name; } set { _name = value; } }
+            #endregion
 
-            public void Deconstruct(out string personName, out int personAge)
-            {
-                personName = _name;
-                personAge = _age;
-            }
         }
         abstract class Employee : Person
         {
-            public string task;
+
+            #region Feilds
+            protected string _task;
             public bool knowlge;
+            #endregion
+            #region Constructors
             public Employee() { }
 
+            #endregion
 
-            public virtual string Work(string task)
-            {
-                return null;
-            }
+            #region Methods
+            public abstract string Work(string task);
+
+            #endregion
+
         }
 
-       
+
         class Boss : Person
         {
+            #region Feilds
             Junior junior;
             Middle middle;
             Senior senior;
 
             Stack myStack = new Stack();
 
+            #endregion
 
-           
-            public Boss(ref Junior junior ,ref Middle middle, ref Senior senior )
+
+            #region Constructors
+            public Boss(in Junior junior ,in Middle middle, in Senior senior )
             {
 
 
@@ -97,7 +110,10 @@ namespace Lab_3_4_5
 
 
             }
+            #endregion
 
+
+            #region Methods
             public void Look()
             {
                 Console.WriteLine("Босс показує усі виконані завдання");
@@ -159,17 +175,30 @@ namespace Lab_3_4_5
                 return res;
                 
             }
+
+            #endregion
         }
 
 
         class Pc
         {
-            public Internet internet;
-            public Pc(ref Internet internet)
+            #region Feilds
+            public CInternet internet
+            {
+                get;
+                set;
+            }
+            #endregion
+
+            #region Constructors
+            public Pc(in CInternet internet)
             { 
                 this.internet = internet;
             }
-           
+            #endregion
+
+
+            #region Methods
             public void OnPC()
             { Console.WriteLine("Був увімкнутий ПК"); }
             public string Work()
@@ -179,8 +208,8 @@ namespace Lab_3_4_5
 
                 return (cod.Compilation() + " ");
             }
+            #endregion
 
-           
 
         }
 
@@ -188,7 +217,11 @@ namespace Lab_3_4_5
         #region Developers
         class Junior : Employee
         {
+            #region Feilds
             Pc pc;
+            #endregion
+
+            #region Constructors
             public Junior(Pc pc)
             {
 
@@ -196,6 +229,10 @@ namespace Lab_3_4_5
 
 
             }
+            #endregion
+
+
+            #region Methods
             public override string Work(string task)
             {
                 Console.WriteLine(" Junior отримав своє завдання і почав працювати");
@@ -214,17 +251,27 @@ namespace Lab_3_4_5
 
                 return (pc.Work()); 
             }
+            #endregion
         }
 
         class Middle : Employee
         {
+            #region Feilds
             Pc pc;
+            #endregion
+
+            #region Constructors
             public Middle(Pc pc)
             {
                 this.pc = pc;
 
 
             }
+            #endregion
+
+
+
+            #region Methods
             public override string Work(string task)
             {
                 Console.WriteLine(" Middle отримав своє завдання і почав працювати");
@@ -233,41 +280,50 @@ namespace Lab_3_4_5
 
                 return (pc.Work());
             }
+            #endregion
 
         }
 
         class Senior : Employee
         {
+            #region Feilds
             Air_conditioning air_Conditioning;
             Pc pc;
+            #endregion
+
+            #region Constructors
             public Senior(Pc pc, Air_conditioning air_Conditioning)
             {
                 this.pc = pc;
                 this.air_Conditioning = air_Conditioning;
 
             }
+            #endregion
+
+
+            #region Methods
             public override string Work(string task)
             {
                 Console.WriteLine(" Senior отримав своє завдання і почав працювати");
 
                 air_Conditioning.Work();
                 pc.OnPC();
-               
+
                 return (pc.Work());
 
             }
+            #endregion
         }
 
         #endregion
 
         class Customer : Person
         {
+            #region Feilds
             string result;
+            #endregion
 
-           public Customer()
-            {
-
-            }
+            #region Methods
             public void Task(ref Boss boss)
             {
 
@@ -280,12 +336,15 @@ namespace Lab_3_4_5
 
 
                 Console.WriteLine($"////////// RESULT: {result} ////////////////");
+                Console.WriteLine();
             }
+            #endregion
 
         }
 
         class Cod
         {
+            #region Methods
             public int Compilation()
             {
                 Console.WriteLine("Start progress");
@@ -295,11 +354,13 @@ namespace Lab_3_4_5
                     Console.WriteLine("Task done");
                 return bbb;
             }
+            #endregion
 
         }
 
-        class Internet
-        { 
+        class CInternet
+        {
+            #region Methods
             public bool GiveInfo()
             {
                 Console.WriteLine("Пошук інформації");
@@ -312,17 +373,18 @@ namespace Lab_3_4_5
 
                     return true;
             }
+
+            #endregion
         }
 
         class Air_conditioning
         {
+            #region Feilds
             int temp;
+            #endregion
 
-            public Air_conditioning()
-            {
 
-            }
-
+            #region Methods
             public void Work()
             {
                 Console.WriteLine("Був увімкнутий кондиціонер");
@@ -350,15 +412,17 @@ namespace Lab_3_4_5
 
                 temp = 16;
             }
+
+            #endregion
         }
 
 
         static void Main(string[] args)
         {
-            Internet internet = new Internet();
-            Pc pc = new Pc(ref internet);
-            Pc pc1 = new Pc(ref internet);
-            Pc pc2 = new Pc(ref internet);
+            CInternet internet = new CInternet();
+            Pc pc = new Pc( internet);
+            Pc pc1 = new Pc( internet);
+            Pc pc2 = new Pc( internet);
             Air_conditioning air_Conditioning = new Air_conditioning();
 
             Customer customer1 = new Customer();
@@ -371,7 +435,7 @@ namespace Lab_3_4_5
             Senior senior = new Senior(pc2, air_Conditioning);
 
 
-            Boss boss = new Boss(ref junior, ref middle, ref senior);
+            Boss boss = new Boss( junior,  middle,  senior);
 
             customer1.Task(ref boss);
             customer2.Task(ref boss);

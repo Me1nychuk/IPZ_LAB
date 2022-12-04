@@ -19,6 +19,10 @@ namespace Lab_3_4_5
             Pc pc2 = new Pc(internet);
             Air_conditioning air_Conditioning = new Air_conditioning();
 
+            
+
+           
+
             Customer customer1 = new Customer();
             Customer customer2 = new Customer();
             Customer customer3 = new Customer();
@@ -31,20 +35,31 @@ namespace Lab_3_4_5
 
             Boss boss = new Boss(junior, middle, senior);
 
-            customer1.Task(ref boss);
-            customer2.Task(ref boss);
-            customer3.Task(ref boss);
+            Secretary secretary = new Secretary(junior, middle, senior,boss);
+            junior.AttachObserver(boss);
+            middle.AttachObserver(boss);
+            senior.AttachObserver(boss);
+            customer1.Task(ref secretary);
+            customer2.Task(ref secretary);
+            customer3.Task(ref secretary);
 
             boss.Look();
 
 
-            Stack myStack = new Stack();
+       
         }
 
     }
 
 
 
+    interface IObserver
+
+    {
+
+        void Update(Employee developer);
+
+    }
     #region Clases
     abstract class Person
     {
@@ -109,21 +124,64 @@ namespace Lab_3_4_5
         #region Feilds
         protected string _task;
         public bool knowlge;
+
         #endregion
         #region Constructors
         public Employee() { }
 
         #endregion
 
-        #region Methods
-        public abstract string Work(string task);
 
+
+        #region Methods
+        public virtual string Work(string task)
+        {
+            Notify();
+            return " Повідомлення передано підписникам";
+        }
+        public int Number { get; private set; }
+
+        private Random _random = new Random();
+
+        public string CurrentReport { get; set; } = "50 %";
+
+   
+
+        IObserver[] _observer = new IObserver[2000];
+
+        int _observerCounter;
+
+        public void AttachObserver(IObserver observer)
+
+        {
+
+            _observer[_observerCounter] = observer;
+
+            ++_observerCounter;
+
+        }
+
+        
+
+        public void Notify()
+
+        {
+
+            for (int i = 0; i < _observerCounter; ++i)
+
+            {
+
+                _observer[i].Update(this);
+
+            }
+
+        }
         #endregion
 
     }
 
 
-    class Boss : Person
+    class Boss : Person, IObserver
     {
         #region Feilds
         Junior junior;
@@ -150,6 +208,20 @@ namespace Lab_3_4_5
 
 
         #region Methods
+      
+        public void Update(Employee developer)
+
+        {
+
+            string message;
+
+
+
+            message = developer.CurrentReport;
+
+            Console.WriteLine("RISKYPLAYER:{0}", message);
+
+        }
         public void Look()
         {
             Console.WriteLine("Босс показує усі виконані завдання");
@@ -163,7 +235,7 @@ namespace Lab_3_4_5
         }
 
 
-        public string TaskCheck(string task)
+        public int TaskCheck(string task)
         {
             Console.WriteLine("Босс отримав завдання від клієнта та почав вирішувати кому його дати");
             myStack.Push(task);
@@ -172,15 +244,15 @@ namespace Lab_3_4_5
             Console.Write("Отримав :\t");
             if (task.Length < 5)
             {
-                return (Developers(1, ref task));
+                return 1;
             }
             else if (task.Length > 10)
             {
-                return (Developers(3, ref task));
+                return 3;
             }
             else
             {
-                return (Developers(2, ref task));
+                return 2;
             }
 
 
@@ -188,6 +260,47 @@ namespace Lab_3_4_5
 
         }
 
+
+
+
+        #endregion
+    }
+
+
+
+    class Secretary : Employee
+    {
+        Junior junior;
+        Middle middle;
+        Senior senior;
+        Boss boss;
+
+        public Secretary(in Junior junior, in Middle middle, in Senior senior, in Boss boss)
+        {
+
+
+            this.junior = junior;
+            this.middle = middle;
+            this.senior = senior;
+            this.boss = boss;
+
+
+        }
+        public string TaskCheck(string task)
+        {
+            _task = task;
+            int number = boss.TaskCheck(task);
+
+
+            string res = Developers(number, ref _task);
+
+
+            return res;
+        }
+        public override string Work(string task)
+        {
+            return "dfdf";
+        }
 
         string Developers(int number, ref string task)
         {
@@ -211,11 +324,7 @@ namespace Lab_3_4_5
             return res;
 
         }
-
-        #endregion
     }
-
-
     class Pc
     {
         #region Feilds
@@ -223,6 +332,14 @@ namespace Lab_3_4_5
         {
             get;
             set;
+        }
+
+        internal Cod Cod
+        {
+            get => default;
+            set
+            {
+            }
         }
         #endregion
 
@@ -273,6 +390,14 @@ namespace Lab_3_4_5
             {
             }
         }
+
+        public CInternet CInternet
+        {
+            get => default;
+            set
+            {
+            }
+        }
         #endregion
 
         #region Methods
@@ -291,8 +416,11 @@ namespace Lab_3_4_5
 
             }
 
+            string result = pc.Work();
 
-            return (pc.Work());
+            base.Work(task);
+
+            return result;
         }
         #endregion
     }
@@ -310,18 +438,26 @@ namespace Lab_3_4_5
 
 
         }
+
+        internal Pc Pc
+        {
+            get => default;
+            set
+            {
+            }
+        }
         #endregion
-
-
 
         #region Methods
         public override string Work(string task)
         {
             Console.WriteLine(" Middle отримав своє завдання і почав працювати");
             pc.OnPC();
+            string result = pc.Work();
 
+            base.Work(task);
 
-            return (pc.Work());
+            return result;
         }
         #endregion
 
@@ -341,8 +477,23 @@ namespace Lab_3_4_5
             this.air_Conditioning = air_Conditioning;
 
         }
-        #endregion
 
+        internal Pc Pc
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        internal Air_conditioning Air_conditioning
+        {
+            get => default;
+            set
+            {
+            }
+        }
+        #endregion
 
         #region Methods
         public override string Work(string task)
@@ -351,8 +502,11 @@ namespace Lab_3_4_5
 
             air_Conditioning.Work();
             pc.OnPC();
+            string result = pc.Work();
 
-            return (pc.Work());
+            base.Work(task);
+
+            return result;
 
         }
         #endregion
@@ -367,7 +521,7 @@ namespace Lab_3_4_5
         #endregion
 
         #region Methods
-        public void Task(ref Boss boss)
+        public void Task(ref Secretary secretary)
         {
 
             Console.WriteLine("Вкажіть ваше завдання: ");
@@ -375,7 +529,7 @@ namespace Lab_3_4_5
 
             Console.WriteLine("Клієнт має завдання і передає його далі");
 
-            result = boss.TaskCheck(task);
+            result = secretary.TaskCheck(task);
 
 
             Console.WriteLine($"////////// RESULT: {result} ////////////////");

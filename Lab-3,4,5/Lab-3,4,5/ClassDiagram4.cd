@@ -17,26 +17,41 @@
   <Class Name="Lab_3_4_5.Employee" Collapsed="true">
     <Position X="5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAgAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAgAAAAAEAAAAAAAAEAAAEIAAAAACAJAAAAAAAAAAAE=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Lab_3_4_5.Boss" Collapsed="true">
-    <Position X="9.5" Y="1.75" Width="1.5" />
+    <Position X="7" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACAQAAIAEAAAAAAAAAAAAAAAAAEAABAAAAAAAAAAQAA=</HashCode>
+      <HashCode>ACQQAAIAAAAAAAAAAAAAAAAAAAEAABAAAAAAAAAAQAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Lab_3_4_5.Pc" Collapsed="true">
-    <Position X="5" Y="5.5" Width="1.5" />
+    <Position X="5" Y="6.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAgAAAAAAAAAAAAAAAAAAAEAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAgAAAAAAAAAAAAAAAAAAAEAAAEAAAgAAAAAAAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Cod" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="Lab_3_4_5.Junior" Collapsed="true">
     <Position X="2.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACgAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Pc" />
+      <Property Name="CInternet" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Lab_3_4_5.Middle" Collapsed="true">
+    <Position X="5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
       <FileName>Program.cs</FileName>
@@ -45,43 +60,40 @@
       <Property Name="Pc" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="Lab_3_4_5.Middle" Collapsed="true">
-    <Position X="5" Y="3.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>ACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Program.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="Lab_3_4_5.Senior" Collapsed="true">
     <Position X="7.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACgAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AigAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Pc" />
+      <Property Name="Air_conditioning" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="Lab_3_4_5.Customer" Collapsed="true">
-    <Position X="0.5" Y="1.75" Width="1.5" />
+    <Position X="3" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Lab_3_4_5.Cod" Collapsed="true">
-    <Position X="12" Y="3.5" Width="1.5" />
+    <Position X="5" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Lab_3_4_5.CInternet" Collapsed="true">
-    <Position X="13.75" Y="0.5" Width="1.5" />
+    <Position X="1.5" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ACAEAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Lab_3_4_5.Air_conditioning" Collapsed="true">
-    <Position X="12" Y="0.5" Width="1.5" />
+    <Position X="8.75" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAgAAAAAAAAAAAAAAAAQAAAAAIAAAACAAAAAAAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
